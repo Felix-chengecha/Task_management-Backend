@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('tasks_id')->constrained();
-            $table->timestamp('due_date')->nullable();
-            $table->timestamp('start_time')->nullable();
-            $table->timestamp('end_time')->nullable();
+            $table->date('due_date')->nullable();
+            $table->date('start_time')->nullable();
+            $table->date('end_time')->nullable();
             $table->string('remarks');
             $table->foreignId('status_id')->constrained();
             $table->timestamps();

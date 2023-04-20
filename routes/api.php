@@ -22,6 +22,7 @@ Route::group(['prefix' => 'v1'], function() {
 
     Route::post('register', [Authcontroller::class, 'register']);
     Route::post('login', [Authcontroller::class, 'login']);
+    Route::get('details/{id}', [Authcontroller::class, 'user_details']);
 
 
     Route::middleware('auth:sanctum')->group(function () {

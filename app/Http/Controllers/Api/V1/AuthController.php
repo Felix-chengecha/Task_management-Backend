@@ -5,16 +5,20 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\detailsResource;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     //
 
+
+
     public function register(Request $request)  {
         try {
 
             $user = User::create([
+                'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password'))
             ]);
@@ -74,5 +78,10 @@ class AuthController extends Controller
                 'message' => 'something went wrong'
             ]);
         }
+    }
+
+
+    public function user_details($id) {
+        return User::find($id) ;
     }
 }

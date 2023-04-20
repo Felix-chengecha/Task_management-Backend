@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->timestamp('due_date')->nullable();
+            $table->date('due_date')->nullable();
             $table->foreignId('status_id')->constrained();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

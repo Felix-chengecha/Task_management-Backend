@@ -22,6 +22,7 @@ class UserTasksResource extends JsonResource
             'start_time'=> $this->start_time,
             'end_time'=> $this->end_time,
             'remarks' => $this->remarks,
+            'status_id' => $this->status_id,
             'status' => $this->status_name
 
         ];

@@ -18,6 +18,8 @@ class Tasks extends Model
 
     ];
 
+    protected $returnType = 'object';
+
      public function Status() {
         return $this->belongsTo(Status::class);
     }

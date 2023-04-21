@@ -22,7 +22,7 @@ class TaskController extends Controller
 
         return TaskResource::collection( DB::table('tasks')
         ->select( 'tasks.id', 'tasks.name', 'tasks.description', 'tasks.due_date',
-          'statuses.status_name')
+        'tasks.status_id','statuses.status_name')
          ->leftJoin('statuses', 'statuses.id', '=', 'tasks.status_id')
         ->get() );
     }
@@ -30,12 +30,21 @@ class TaskController extends Controller
 
     public function show($id)  {
 
-        return TaskResource::collection( DB::table('tasks')
-               ->select( 'tasks.id', 'tasks.name', 'tasks.description', 'tasks.due_date',
-                 'statuses.status_name')
-                ->leftJoin('statuses', 'statuses.id', '=', 'tasks.status_id')
-               ->where('tasks.id', '=', $id)
-               ->get() );
+        // return   DB::table('tasks')
+
+        //        ->select( 'tasks.id', 'tasks.name', 'tasks.description', 'tasks.due_date',
+        //        'tasks.status_id','statuses.status_name')
+        //         ->leftJoin('statuses', 'statuses.id', '=', 'tasks.status_id')
+        //        ->where('tasks.id', '=', $id)
+        //        ->get() ;
+
+        return Tasks::select('tasks.id', 'tasks.name', 'tasks.description', 'tasks.due_date', 'tasks.status_id', 'statuses.status_name')
+            ->leftJoin('statuses', 'statuses.id', '=', 'tasks.status_id')
+            ->where('tasks.id', $id)
+            ->get()
+            ->toArray();
+
+
     }
 
 

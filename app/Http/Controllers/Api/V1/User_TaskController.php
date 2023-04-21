@@ -8,17 +8,20 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserTaskRequest;
 use App\Http\Resources\UserTasksResource;
+use App\Models\Status;
 
 class User_TaskController extends Controller
 {
     public function index() {
 
+
+
         return UserTasksResource::collection( DB::table('user_tasks')
         ->select( 'user_tasks.id', 'user_tasks.user_id', 'tasks.name', 'user_tasks.due_date', 'user_tasks.start_time', 'user_tasks.end_time',
-          'user_tasks.remarks', 'statuses.status_name')
+          'user_tasks.remarks', 'user_tasks.status_id', 'statuses.status_name')
          ->leftJoin('tasks', 'tasks.id', '=', 'user_tasks.tasks_id')
          ->leftJoin('statuses', 'statuses.id', '=', 'user_tasks.status_id')
-        ->get() );
+         ->get() );
 
     }
 
